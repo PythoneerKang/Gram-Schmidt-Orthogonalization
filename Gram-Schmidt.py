@@ -68,7 +68,7 @@ Ans = [unit(x[0])]
 for j in range(1,len(x)):
     Int = []
     for anumber in range(0, j):
-        w = scam(dot(Ans[j-1],x[j]), Ans[j-1])
+        w = scam(dot(Ans[anumber],x[j]), Ans[anumber])
         Int.append(w)
     while (len(Int) > 1):
         temp = add(Int[0], Int[1])
