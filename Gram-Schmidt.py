@@ -21,7 +21,7 @@ def unit(x):
       z.append((1/mag(x))*a)
     return z
 
-def matm(a,b):
+def scam(a,b):
     'Scalar multiplication'
     z = []
     for x in b:
@@ -48,12 +48,10 @@ while True:
       continue
 
 Ans = []
+Int = []
 
-while j in range(len(x))
-
-if j <= len(x):
-  W_j = U_j-()
-
-for a in x:
-  for b in a:
-    for x in b:
+for j in range(1,len(x)):
+  w = scam(dot(Ans[j-1],x[j]), Ans[j-1])
+  Int.append(w)
+  for number in range():
+    Ans.append(unit(sub(x[j]-w)))
