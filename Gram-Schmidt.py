@@ -28,6 +28,13 @@ def scam(a,b):
       z.append(a*x)
     return z
 
+def sub(a,b):
+  'Vector subtraction'
+  z = []
+  for x,y in zip(a,b):
+    z.append(x-y)
+  return z
+
 while True:
 
     x = eval(input("Please enter the linearly independent vectors in any iterable format (list or tuple).\nUser input:"))
