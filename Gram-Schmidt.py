@@ -1,6 +1,4 @@
-#This is a Gram-Schmidt Orthogonalization Python program.
-
-aa = [(1,1,-1),(1,2,1),(2,3,4)]
+print("This is a Gram-Schmidt Orthogonalization Python program.\n")
 
 def dot(x,y):
     'Inner/dot product of vectors A and B.'
@@ -44,37 +42,33 @@ def sub(a,b):
         z.append(x-y)
     return z
 
-while True:
+def ortho(x, TOL=1e-8):
+    'The Gram-Schmidt orthogonalization function.'
+        
+    Ans = [unit(x[0])]
 
-    x = eval(input("Please enter the linearly independent vectors in any iterable format (list or tuple).\nUser input:"))
+    for j in range(1,len(x)):
+        Int = []
+        for anumber in range(0, j):
+            w = scam(dot(Ans[anumber],x[j]), Ans[anumber])
+            Int.append(w)
+        while (len(Int) > 1):
+            temp = add(Int[0], Int[1])
+            Int.remove(Int[0])
+            Int.remove(Int[0])
+            Int.insert(1, temp)
+        check = sub(list(x[j]), Int[0])
+        for ele in range(0, len(check)):
+            if check[ele] < TOL:
+                check[ele] = 0
+        try:
+            Ans.append(unit(check))
+        except ZeroDivisionError:
+            z_v = []
+            for x in range(len(check)):
+                z_v.append(0)
+            Ans.append([z_v])
 
-    n = 0
+    return Ans
 
-    for ele in x:
-        n += 1
-        print("u_{} = {}".format(n, ele))
-
-    conf= input("\nAre the inputs correct? Y/N")
-
-    if conf.lower() == 'y':
-        break
-
-    else:
-        print()
-        continue
-
-Ans = [unit(x[0])]
-
-for j in range(1,len(x)):
-    Int = []
-    for anumber in range(0, j):
-        w = scam(dot(Ans[anumber],x[j]), Ans[anumber])
-        Int.append(w)
-    while (len(Int) > 1):
-        temp = add(Int[0], Int[1])
-        Int.remove(Int[0])
-        Int.remove(Int[0])
-        Int.insert(1, temp)
-    Ans.append(unit(sub(list(x[j]), Int[0])))
-
-print("\nThe basis vectors for the orthonormal system are:\n{}".format(Ans))
+ld = [(1,1,-1),(1,2,1),(2,3,0)]
