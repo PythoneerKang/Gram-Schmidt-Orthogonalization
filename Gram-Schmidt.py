@@ -42,7 +42,7 @@ def sub(a,b):
         z.append(x-y)
     return z
 
-def ortho(x):
+def ortho(x, TOL=1e-8):
     'The Gram-Schmidt orthogonalization function.'
         
     Ans = [unit(x[0])]
@@ -57,6 +57,18 @@ def ortho(x):
             Int.remove(Int[0])
             Int.remove(Int[0])
             Int.insert(1, temp)
-        Ans.append(unit(sub(list(x[j]), Int[0])))
+        check = sub(list(x[j]), Int[0])
+        for ele in range(0, len(check)):
+            if check[ele] < TOL:
+                check[ele] = 0
+        try:
+            Ans.append(unit(check))
+        except ZeroDivisionError:
+            z_v = []
+            for x in range(len(check)):
+                z_v.append(0)
+            Ans.append([z_v])
 
     return Ans
+
+ld = [(1,1,-1),(1,2,1),(2,3,0)]
